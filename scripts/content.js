@@ -17,15 +17,25 @@ function hideElements() {
     const feed = document.querySelector('main[aria-label="Main Feed"]');
     const news = document.querySelector('aside[aria-label*="News"]'); // more stable than ID
     const footer = document.querySelector('footer[aria-label="LinkedIn Footer Content"]');
-
+    
     removeFeed(feed);
     removeNews(news);
     removeFooter(footer);
 }
 
 
-hideElements();
+hideElements()
 
 
-const observer = new MutationObserver(hideElements);
-observer.observe(document.body, { childList: true, subtree: true });
+
+let lastPath = window.location.pathname;
+setInterval(() => {
+    if (window.location.pathname !== lastPath) {
+        lastPath = window.location.pathname;
+        console.log('URL changed:', lastPath);
+        if(window.location.pathname == '/feed/'){
+            console.log(window.location.pathname,"trying")
+            location.reload();
+        }
+    }
+}, 100);
