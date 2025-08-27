@@ -29,13 +29,14 @@ hideElements()
 
 
 let lastPath = window.location.pathname;
-setInterval(() => {
+const checkURL = setInterval(() => {
     if (window.location.pathname !== lastPath) {
         lastPath = window.location.pathname;
         console.log('URL changed:', lastPath);
         if(window.location.pathname == '/feed/'){
             console.log(window.location.pathname,"trying")
             location.reload();
+            clearInterval(checkURL)
         }
     }
-}, 100);
+}, 1000);
